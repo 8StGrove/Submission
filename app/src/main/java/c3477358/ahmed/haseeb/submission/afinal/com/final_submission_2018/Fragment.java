@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.support.v4.app.Fragment;
 
 import java.util.UUID;
 
@@ -28,11 +29,11 @@ public class Fragment extends android.support.v4.app.Fragment {
     // Should use the newInstance command to pass required values required to create the arguemnt
 
 
-    public static TodoFragment newInstance(UUID todoId) {
+    public static Fragment newInstance(UUID todoId) {
         Bundle args = new Bundle();
         args.putSerializable(ARG_TODO_ID, todoId);
 
-        TodoFragment fragment = new TodoFragment();
+        Fragment fragment = new Fragment();
         fragment.setArguments(args);
         return fragment;
     }
@@ -63,7 +64,7 @@ public class Fragment extends android.support.v4.app.Fragment {
 
         UUID todoId = (UUID) getArguments().getSerializable(ARG_TODO_ID);
 
-        mTodo = TodoModel.get(getActivity()).getTodo(todoId);
+        mTodo = Model.get(getActivity()).getTodo(todoId);
 
     }
 
@@ -73,10 +74,10 @@ public class Fragment extends android.support.v4.app.Fragment {
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_todo, container, false);
+        View view = inflater.inflate(R.layout.fragment_task, container, false);
 
         mEditTextTitle = view.findViewById(R.id.todo_title);
-        mEditTextTitle.setText(mTodo.getTitle());
+        mEditTextTitle.setText(mTodo.getTitles());
         mEditTextTitle.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -85,7 +86,7 @@ public class Fragment extends android.support.v4.app.Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                mTodo.setTitle(s.toString());
+                mTodo.setTitles(s.toString());
             }
 
             @Override

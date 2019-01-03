@@ -14,7 +14,7 @@ public class ActivityRefresh extends AppCompatActivity {
     public static final String EXTRA_TODO_ID = "todo_id";
 
     public static Intent newIntent(Context packageContext, UUID todoId) {
-        Intent intent = new Intent(packageContext, TodoActivity.class);
+        Intent intent = new Intent(packageContext, ActivityRefresh.class);
         intent.putExtra(EXTRA_TODO_ID, todoId);
         return intent;
     }
@@ -24,7 +24,7 @@ public class ActivityRefresh extends AppCompatActivity {
 
     protected Fragment createFragment(){
         UUID todoId = (UUID) getIntent().getSerializableExtra(EXTRA_TODO_ID);
-        return TodoFragment.newInstance(todoId);
+        return c3477358.ahmed.haseeb.submission.afinal.com.final_submission_2018.Fragment.newInstance(todoId);
     }
 
     @Override

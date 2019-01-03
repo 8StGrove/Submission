@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
     private Date mDate;
     private boolean mIsComplete;
 
-    public Todo() {
+    public MainActivity() {
         mId = UUID.randomUUID();
         mDate = new Date();
     }
@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         mId = id;
     }
 
-    public String getTitle() {
+    public String getTitles() {
         return mTitle;
     }
 
