@@ -12,15 +12,14 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.support.v4.app.Fragment;
 
 import java.util.UUID;
 
-public class Fragment extends android.support.v4.app.Fragment {
+public class TaskFragment extends android.support.v4.app.Fragment {
 
     private static final String ARG_TODO_ID = "todo_id";
 
-    private Todo mTodo;
+    private MainActivity mTodo;
     private EditText mEditTextTitle;
     private Button mButtonDate;
     private CheckBox mCheckBoxIsComplete;
@@ -29,23 +28,23 @@ public class Fragment extends android.support.v4.app.Fragment {
     // Should use the newInstance command to pass required values required to create the arguemnt
 
 
-    public static Fragment newInstance(UUID todoId) {
+    public static TaskFragment newInstance(UUID todoId) {
         Bundle args = new Bundle();
         args.putSerializable(ARG_TODO_ID, todoId);
 
-        Fragment fragment = new Fragment();
-        fragment.setArguments(args);
-        return fragment;
+        TaskFragment taskFragment = new TaskFragment();
+        taskFragment.setArguments(args);
+        return taskFragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
 
-        error
+
 
         /*
-         Fragment accessing the intent from the hosting Activity as in the following code snippet
+         TaskFragment accessing the intent from the hosting Activity as in the following code snippet
          allows for simple code that works.
 
         UUID todoId = (UUID) getActivity()
@@ -86,7 +85,7 @@ public class Fragment extends android.support.v4.app.Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                mTodo.setTitles(s.toString());
+                mTodo.setTitle(s.toString());
             }
 
             @Override
@@ -114,4 +113,5 @@ public class Fragment extends android.support.v4.app.Fragment {
 }
 
 
-}
+
+

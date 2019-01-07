@@ -24,7 +24,7 @@ public class ActivityRefresh extends AppCompatActivity {
 
     protected Fragment createFragment(){
         UUID todoId = (UUID) getIntent().getSerializableExtra(EXTRA_TODO_ID);
-        return c3477358.ahmed.haseeb.submission.afinal.com.final_submission_2018.Fragment.newInstance(todoId);
+        return TaskFragment.newInstance(todoId);
     }
 
     @Override

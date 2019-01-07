@@ -2,6 +2,9 @@ package c3477358.ahmed.haseeb.submission.afinal.com.final_submission_2018;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -10,14 +13,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v4.app.Fragment;
+
+
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListFragment extends Fragment {
+public class ListFragment extends Fragment  {
+
     private RecyclerView mTodoRecyclerView;
     TodoAdapter mTodoAdapter;
 
@@ -54,7 +57,7 @@ public class ListFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
-            case R.id.new_Task:
+            case R.id.new_todo:
 
                 MainActivity mainActivity = new MainActivity();
                 Model.get(getActivity()).addTask(mainActivity);
@@ -101,12 +104,12 @@ public class ListFragment extends Fragment {
 
         public TodoHolder(LayoutInflater inflater, ViewGroup parent) {
 
-            super(inflater.inflate(R.layout.list_item_todo, parent, false));
+            super(inflater.inflate(R.layout.list_item_task, parent, false));
 
             itemView.setOnClickListener(this);
 
-            mTextViewTitle = (TextView) itemView.findViewById(R.id.todo_title);
-            mTextViewDate = (TextView) itemView.findViewById(R.id.todo_date);
+            mTextViewTitle = itemView.findViewById(R.id.todo_title);
+            mTextViewDate = itemView.findViewById(R.id.todo_date);
 
         }
 
@@ -126,24 +129,24 @@ public class ListFragment extends Fragment {
 
         }
 
-        public void bind(Todo todo){
-            mTodo = todo;
+        public void bind(MainActivity mainActivity){
+            mTodo = mainActivity;
             mTextViewTitle.setText(mTodo.getTitle());
             mTextViewDate.setText(mTodo.getDate().toString());
         }
 
     }
 
-    public class TodoAdapter extends RecyclerView.Adapter<TodoListFragment.TodoHolder> {
+    public class TodoAdapter extends RecyclerView.Adapter<ListFragment.TodoHolder> {
 
-        private List<Todo> mTodos;
+        private List<MainActivity> mTodos;
 
-        public TodoAdapter(List<Todo> todos) {
+        public TodoAdapter(List<MainActivity> todos) {
             mTodos = todos;
         }
 
         @Override
-        public TodoListFragment.TodoHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        public ListFragment.TodoHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
 
             return new TodoHolder(layoutInflater, parent);
@@ -151,7 +154,7 @@ public class ListFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(TodoHolder holder, int position) {
-            Todo todo = mTodos.get(position);
+            MainActivity todo = mTodos.get(position);
             holder.bind(todo);
         }
 

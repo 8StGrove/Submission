@@ -43,7 +43,7 @@ public class PagerActivity extends AppCompatActivity {
             @Override
             public Fragment getItem(int position) {
                 MainActivity todo = mTodos.get(position);
-                return Fragment.newInstance(todo.getId());
+                return TaskFragment.newInstance(todo.getId());
             }
 
             @Override
